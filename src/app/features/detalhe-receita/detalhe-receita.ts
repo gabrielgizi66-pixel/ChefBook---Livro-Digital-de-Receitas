@@ -10,7 +10,7 @@ import { ReceitasService } from "../../core/services/receitas.service";
   templateUrl: "./detalhe-receita.html",
   styleUrl: "./detalhe-receita.css",
 })
-export class Detalhereceita {
+export class DetalheReceita {
   readonly receita$;
 
   constructor(route: ActivatedRoute, receitasService: ReceitasService) {

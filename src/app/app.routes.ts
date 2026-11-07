@@ -14,14 +14,14 @@ export const routes: Routes = [
   {
     path: "receitas",
     loadComponent: () =>
-      import("./features/receitas/receitas").then((m) => m.receitas),
+      import("./features/receitas/receitas").then((m) => m.Receitas),
     title: "Receitas | ChefBook",
   },
   {
     path: "receitas/:id",
     loadComponent: () =>
       import("./features/detalhe-receita/detalhe-receita").then(
-        (m) => m.Detalhereceita,
+        (m) => m.DetalheReceita,
       ),
     title: "Detalhes da receita | ChefBook",
   },
@@ -31,18 +31,18 @@ export const routes: Routes = [
     title: "Admin | ChefBook",
   },
   {
-    path: "admin/novo",
+    path: "admin/form",
     loadComponent: () =>
       import("./features/manutencao-receita/manutencao-receita").then(
-        (m) => m.Manutencaoreceita,
+        (m) => m.ManutencaoReceita,
       ),
     title: "Nova receita | ChefBook",
   },
   {
-    path: "admin/editar/:id",
+    path: "admin/form/:id",
     loadComponent: () =>
       import("./features/manutencao-receita/manutencao-receita").then(
-        (m) => m.Manutencaoreceita,
+        (m) => m.ManutencaoReceita,
       ),
     title: "Editar receita | ChefBook",
   },

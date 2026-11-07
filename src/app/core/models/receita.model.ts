@@ -7,4 +7,4 @@ modoPreparo: string[];
 tempoPreparoMinutos: number;
 porcoes: number;
 publicada: boolean;
-}
+};

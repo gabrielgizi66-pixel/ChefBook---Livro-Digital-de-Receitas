@@ -1,4 +1,4 @@
-# Raxadinha — Estrutura inicial Angular 21+
+# ChefBook — Estrutura inicial Angular 21+
 
 Projeto didático com páginas e componentes, **sem API, autenticação, banco de dados, formulários ou CRUD**.
 

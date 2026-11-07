@@ -7,7 +7,8 @@ import { map } from "rxjs/operators";
 type FirebaseReceita = Omit<Receita, "id"> & {id?: unknown};
 
 @Injectable({ providedIn: "root" })
-wexport class ReceitasService {
+
+export class ReceitasService {
 
 private http = inject(HttpClient);
 private apiUrl = "https://chefbook---livro-digital-default-rtdb.firebaseio.com/receitas";
@@ -42,6 +43,28 @@ getAll(): Observable<Receita[]> {
       }),
     );
   }  
+
+ create(receita:Omit<Receita, "id">): Observable<Receita> {
+    return this.http.post< { name: string } >
+    (this.apiUrl + this.sufix, receita)
+    .pipe(
+      map((response) => ({
+        id: response.name,
+        ...receita,
+      }))
+    );
+  }
+
+  update(id:string, receita:Omit<Receita, "id">): Observable<Receita> {
+    return this.http.put<Omit<Receita, "id">>
+    (`${this.apiUrl}/${id}${this.sufix}`, receita)
+    .pipe(
+      map((response) => ({
+        id,
+        ...receita,
+      }))
+    );
+  }
 
   delete(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}${this.sufix}`);
