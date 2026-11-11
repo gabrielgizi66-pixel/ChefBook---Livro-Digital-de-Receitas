@@ -16,7 +16,7 @@ export class DetalheReceita {
   constructor(route: ActivatedRoute, receitasService: ReceitasService) {
     this.receita$ = route.paramMap.pipe(
       map((parametros) => Number(parametros.get("id"))),
-      switchMap((id) => receitasService.buscarPorId(id)),
+      switchMap((id) => (receitasService as any).buscarPorId(id)),
     );
   }
 }

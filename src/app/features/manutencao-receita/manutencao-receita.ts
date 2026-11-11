@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ReceitasService } from "../../core/services/receitas.service";
 
 @Component({
   selector: "app-manutencao-receita",
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   templateUrl: "./manutencao-receita.html",
   styleUrl: "./manutencao-receita.css",
 })
@@ -27,7 +27,7 @@ export class ManutencaoReceita {
     nome: ["", [Validators.required, Validators.minLength(15)]],
     categoria: ["", [Validators.required]],
     ingredientes: [[] as string[], [Validators.required]],
-    modoPreparo: ["", [Validators.required]],
+    modoPreparo: [[] as string[], [Validators.required]],
     tempoPreparoMinutos: [0, [Validators.required, Validators.min(0)]],
     porcoes: [0, [Validators.required, Validators.min(0)]],
     publicada: [false, [Validators.required]],
@@ -46,16 +46,28 @@ export class ManutencaoReceita {
 
     this.receitasService.getById(id).subscribe({
       next: (receita) => {
-        this.form.patchValue({
-          id: receita.id,
-          nome: receita.nome,
-          categoria: receita.categoria,
-          ingredientes: receita.ingredientes,
-          modoPreparo: receita.modoPreparo,
-          tempoPreparoMinutos: receita.tempoPreparoMinutos,
-          porcoes: receita.porcoes,
-          publicada: receita.publicada,
-        });
+        const ingredientes =
+          typeof receita.ingredientes === "string"
+            ? receita.ingredientes
+                .split(",")
+                .map((ingrediente) => ingrediente.trim())
+                .filter((ingrediente) => ingrediente.length > 0)
+            : Array.isArray(receita.ingredientes)
+              ? receita.ingredientes.map((ingrediente) => String(ingrediente))
+              : [];
+
+        const receitaCarregada = {
+          id: Number(receita.id ?? 0),
+          nome: String(receita.nome ?? ""),
+          categoria: String(receita.categoria ?? ""),
+          ingredientes,
+          modoPreparo: String(receita.modoPreparo ?? ""),
+          tempoPreparoMinutos: Number(receita.tempoPreparoMinutos ?? 0),
+          porcoes: Number(receita.porcoes ?? 0),
+          publicada: Boolean(receita.publicada),
+        };
+
+        this.form.patchValue(receitaCarregada);
         this.loadingData = false;
       },
       error: (error) => {
@@ -69,22 +81,32 @@ export class ManutencaoReceita {
     this.loading = true;
     const formsValue = this.form.getRawValue();
     const receitaData = {
-      id: formsValue.id,
-      nome: formsValue.nome,
-      categoria: formsValue.categoria,
-      ingredientes: formsValue.ingredientes,
-      modoPreparo: formsValue.modoPreparo,
-      tempoPreparoMinutos: formsValue.tempoPreparoMinutos,
-      porcoes: formsValue.porcoes,
-      publicada: formsValue.publicada,
+      id: Number(formsValue.id),
+      nome: String(formsValue.nome),
+      categoria: String(formsValue.categoria),
+      ingredientes: formsValue.ingredientes
+        .filter((ingrediente) => ingrediente && ingrediente.trim().length > 0)
+        .join(", "),
+      modoPreparo: Array.isArray(formsValue.modoPreparo)
+        ? formsValue.modoPreparo.filter(
+            (passo) => passo && passo.trim().length > 0,
+          )
+        : String(formsValue.modoPreparo ?? ""),
+      tempoPreparoMinutos: String(formsValue.tempoPreparoMinutos ?? "0"),
+      porcoes: Number(formsValue.porcoes ?? 0),
+      publicada: Boolean(formsValue.publicada),
     };
 
     if (this.editingId !== null) {
-      this.receitasService.update(this.editingId, receitaData).subscribe({
+      this.receitasService.update(this.editingId, receitaData)
+      .subscribe({
         next: () => {
           this.sucessMessage = "Receita atualizada com sucesso!";
           this.loading = false;
-          this.router.navigate(["/receitas"]);
+          this.form.reset();
+          setTimeout(() => {
+            this.router.navigate(["/admin"]);
+          }, 1000);
         },
         error: (error) => {
           this.errorMessage = "Erro ao salvar a receita: " + error.message;
@@ -98,7 +120,9 @@ export class ManutencaoReceita {
       next: () => {
         this.sucessMessage = "Receita criada com sucesso!";
         this.loading = false;
-        this.router.navigate(["/receitas"]);
+        setTimeout(() => {
+          this.router.navigate(["/admin"]);
+        }, 1000);
       },
       error: (error) => {
         this.errorMessage = "Erro ao salvar a receita: " + error.message;

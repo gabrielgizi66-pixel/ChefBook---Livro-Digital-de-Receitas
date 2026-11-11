@@ -2,6 +2,7 @@ import { Component, inject } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { ReceitasService } from "../../core/services/receitas.service";
 import { Receita } from "../../core/models/receita.model";
+import { signal } from "@angular/core";
 
 @Component({
   selector: "app-admin",
@@ -13,27 +14,27 @@ export class Admin {
   private receitaService = inject(ReceitasService);
   private router = inject(Router);
 
-  receitas: Receita[] = [];
-  loading = false;
-  errorMessage = "";
-  sucessMessage = "";
+  receitas= signal<Receita[]>([]);
+  loading = signal(true);
+  errorMessage = signal("");
+  sucessMessage = signal("");
 
   loadReceitas(): void {
-    this.loading = true;
-    this.errorMessage = "";
+    this.loading.set(true);
+    this.errorMessage.set("");
     this.receitaService.getAll().subscribe({
       next: (response) => {
-        this.receitas = response;
-        this.loading = false;
+        this.receitas.set(response);
+        this.loading.set(false);
       },
       error: (error) => {
-        this.errorMessage = "Erro ao carregar receitas: " + error.message;
-        this.loading = false;
+        this.errorMessage.set("Erro ao carregar receitas: " + error.message);
+        this.loading.set(false);
       },
     });
   }
 
-  ngnit(): void {
+  ngOnInit(): void {
     this.loadReceitas();
   }
 
@@ -43,7 +44,7 @@ export class Admin {
     });
 }
 
-remove(id: string): void {
+delete(id: string): void {
   const confirmDelete = confirm("Está certo que deseja excluir esta receita?");
   if (!confirmDelete) {
     return;
@@ -51,16 +52,16 @@ remove(id: string): void {
 
   this.receitaService.delete(id).subscribe({
     next: () => {
-      this.sucessMessage = "Receita excluída com sucesso!";
+      this.sucessMessage.set("Receita excluída com sucesso!");
       this.loadReceitas();
       setTimeout(() => {
-        this.sucessMessage = "";
+        this.sucessMessage.set("");
       }, 2000);
     },
     error: (error) => {
-      this.errorMessage = "Erro ao excluir receita.";
+      this.errorMessage.set("Erro ao excluir receita.");
       setTimeout(() => {
-        this.errorMessage = "";
+        this.errorMessage.set("");
       }, 2000);
     },
   });

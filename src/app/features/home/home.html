@@ -6,7 +6,7 @@
       <p>O Raxadinha reúne criação, organização e venda de conteúdos digitais em um só lugar — simples para quem publica
         e agradável para quem compra.</p>
       <div class="acoes">
-        <a class="botao botao-primario" routerLink="/conteudos">Explorar conteúdos</a>
+        <a class="botao botao-primario" routerLink="/receitas">Explorar conteúdos</a>
         <a class="botao botao-secundario" routerLink="/sobre">Conhecer o projeto</a>
       </div>
       <div class="indicadores" aria-label="Destaques da plataforma">
@@ -48,7 +48,7 @@
     </div>
 
     <div class="trilho" #trilho tabindex="0" aria-label="Carrossel de conteúdos em destaque">
-      @for (conteudo of conteudosDestaque$ | async; track conteudo.id) {
+      @for (conteudo of receitasDestaque$ | async; track conteudo.id) {
       <article class="card-conteudo">
         <div class="capa" [class]="'capa ' + conteudo.cor">
           <span>{{ conteudo.icone }}</span>
@@ -57,7 +57,7 @@
         <div class="card-corpo">
           <span class="categoria">{{ conteudo.categoria }}</span>
           <h3>{{ conteudo.titulo }}</h3>
-          <a [routerLink]="['/conteudos', conteudo.id]" [attr.aria-label]="'Conhecer ' + conteudo.titulo">Conhecer
+          <a [routerLink]="['/receitas', conteudo.id]" [attr.aria-label]="'Conhecer ' + conteudo.titulo">Conhecer
             <span>→</span></a>
         </div>
       </article>
@@ -92,6 +92,6 @@
     <div><span class="etiqueta">Pronto para começar?</span>
       <h2>Tem sempre alguma coisa boa esperando para ser descoberta.</h2>
     </div>
-    <a class="botao botao-claro" routerLink="/conteudos">Ver conteúdos <span>→</span></a>
+    <a class="botao botao-claro" routerLink="/receitas">Ver conteúdos <span>→</span></a>
   </section>
 </div>

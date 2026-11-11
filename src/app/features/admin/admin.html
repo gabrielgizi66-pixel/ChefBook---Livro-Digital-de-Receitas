@@ -14,23 +14,27 @@
   </div>
 }
 
-@if (loading) {
+@if (loading()) {
   <div class="loading">
     <p>Carregando...</p>
   </div>
 }
-@if (!loading && receitas.length === 0) {
+@if (!loading() && receitas().length === 0) {
   <div class="empty-state">
     <p>Nenhuma receita cadastrada.</p>
   </div>
 }
 
 <div class="conteudo-grid">
-    @for(receita of receitas; track receita.id){
+    @for (receita of receitas(); track receita.id) {
         <div class="receita-item">
             <h3>{{receita.nome}}</h3>
-            <p>{{receita.descricao}}</p>
-            <p>{{receita.preco}}</p>
+            <p>{{receita.categoria}}</p>
+            <p>{{receita.ingredientes}}</p>
+            <p>{{receita.modoPreparo}}</p>
+            <p>{{receita.tempoPreparoMinutos}}</p>
+            <p>{{receita.porcoes}}</p>
+            <p>{{receita.publicada}}</p>
             <div class="actions">
                 <button type="button" class="btn-edit" (click)="edit(receita.id)">Editar</button>
                 <button type="button" class="btn-delete" (click)="delete(receita.id)">Excluir</button>

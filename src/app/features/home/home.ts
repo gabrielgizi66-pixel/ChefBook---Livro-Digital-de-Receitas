@@ -2,7 +2,7 @@ import { AsyncPipe } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { map } from "rxjs";
-import { ConteudosService } from "../../core/services/conteudos.service";
+import { ReceitasService } from "../../core/services/receitas.service";
 
 @Component({
   selector: "app-home",
@@ -11,12 +11,12 @@ import { ConteudosService } from "../../core/services/conteudos.service";
   styleUrl: "./home.css",
 })
 export class Home {
-  readonly conteudosDestaque$;
+  readonly receitasDestaque$;
 
-  constructor(conteudosService: ConteudosService) {
-    this.conteudosDestaque$ = conteudosService
+  constructor(receitasService: ReceitasService) {
+    this.receitasDestaque$ = receitasService
       .listar()
-      .pipe(map((conteudos) => conteudos.slice(0, 10)));
+      .pipe(map((receitas) => receitas.slice(0, 10)));
   }
 
   moverCarrossel(trilho: HTMLElement, direcao: number): void {
