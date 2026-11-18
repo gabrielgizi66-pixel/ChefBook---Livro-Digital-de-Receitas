@@ -1,36 +1,44 @@
-@if (receita$ | async; as receita) {
+@if (carregando()) {
+<div class="loading">
+  <p>Carregando receita...</p>
+</div>
+} @else if (receita(); as receita) {
 <article class="detalhe">
-  <a class="voltar" routerLink="/receitas"><span>←</span> Voltar para conteúdos</a>
+  <a class="voltar" routerLink="/receitas"><span>←</span> Voltar para receitas</a>
   <section class="apresentacao">
     <div class="capa" [class]="'capa ' + receita.cor" aria-hidden="true">
-      <span>{{ receita.icone }}</span><small>Raxadinha</small>
+      <span>{{ receita.icone }}</span><small>ChefBook</small>
     </div>
     <div class="informacoes">
       <span class="categoria">{{ receita.categoria }}</span>
-      <h1>{{ receita.titulo }}</h1>
-      <p class="introducao">{{ receita.resumo }}</p>
+      <h1>{{ receita.nome }}</h1>
+      <p class="introducao">
+        Uma receita com {{ receita.ingredientes.length }} ingredientes e {{ receita.modoPreparo.length }} passos
+        para preparar.
+      </p>
       <div class="metadados">
-        <div><span>Formato</span><strong>{{ receita.formato }}</strong></div>
-        <div><span>Acesso</span><strong>{{ receita.acesso }}</strong></div>
-        <div><span>Autor</span><strong>{{ receita.autor }}</strong></div>
+        <div><span>Tempo de preparo</span><strong>{{ receita.tempoPreparoMinutos }} min</strong></div>
+        <div><span>Rendimento</span><strong>{{ receita.porcoes }} porções</strong></div>
+        <div><span>Categoria</span><strong>{{ receita.categoria }}</strong></div>
       </div>
-      <p class="preco"><span>Por apenas</span><strong>{{ receita.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR'
-          }}</strong></p>
-      <button class="botao-principal" type="button">Quero este conteúdo <span>→</span></button>
-      <p class="observacao">A ação de compra poderá ser conectada à API posteriormente.</p>
+      <a class="botao-principal" href="#modo-preparo">Começar a cozinhar <span>→</span></a>
     </div>
   </section>
   <section class="descricao">
-    <div class="texto">
-      <span class="rotulo">Sobre este conteúdo</span>
-      <h2>{{ receita.titulo }}</h2>
-      <p>{{ receita.descricao }}</p>
+    <div class="texto" id="modo-preparo">
+      <span class="rotulo">Passo a passo</span>
+      <h2>Modo de preparo</h2>
+      <ol class="passos">
+        @for (passo of receita.modoPreparo; track $index) {
+        <li>{{ passo }}</li>
+        }
+      </ol>
     </div>
     <aside>
-      <h3>O que você encontra</h3>
+      <h3>Ingredientes</h3>
       <ul>
-        @for (beneficio of receita.beneficios; track beneficio) {
-        <li><span>✓</span> {{ beneficio }}</li>
+        @for (ingrediente of receita.ingredientes; track $index) {
+        <li><span>✓</span> {{ ingrediente }}</li>
         }
       </ul>
     </aside>
@@ -39,8 +47,8 @@
 } @else {
 <section class="nao-encontrado">
   <span>404</span>
-  <h1>Conteúdo não encontrado</h1>
-  <p>O item pode não existir ou ter sido removido da lista.</p>
-  <a routerLink="/receitas">Ver todos os conteúdos</a>
+  <h1>Receita não encontrada</h1>
+  <p>A receita pode não existir ou ter sido removida do livro.</p>
+  <a routerLink="/receitas">Ver todas as receitas</a>
 </section>
 }

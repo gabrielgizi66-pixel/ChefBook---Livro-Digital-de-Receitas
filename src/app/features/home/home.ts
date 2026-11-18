@@ -15,8 +15,12 @@ export class Home {
 
   constructor(receitasService: ReceitasService) {
     this.receitasDestaque$ = receitasService
-      .listar()
-      .pipe(map((receitas) => receitas.slice(0, 10)));
+      .getAll()
+      .pipe(
+        map((receitas) =>
+          receitas.filter((receita) => receita.publicada).slice(0, 10),
+        ),
+      );
   }
 
   moverCarrossel(trilho: HTMLElement, direcao: number): void {

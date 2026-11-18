@@ -10,6 +10,8 @@ body {
 
 body {
   min-height: 100vh;
+  background: #fffaf4;
+  color: #3b1d10;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -17,4 +19,71 @@ app-root {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+/* Cores das capas das receitas */
+.capa.vermelho {
+  background: linear-gradient(135deg, #9d0208, #e63946);
+}
+
+.capa.laranja {
+  background: linear-gradient(135deg, #c44900, #f77f00);
+}
+
+.capa.amarelo {
+  background: linear-gradient(135deg, #d98a00, #fcbf49);
+}
+
+.capa.coral {
+  background: linear-gradient(135deg, #b8390e, #ff7b54);
+}
+
+.capa.vinho {
+  background: linear-gradient(135deg, #5c0a14, #a4161a);
+}
+
+/* Mensagens */
+.sucess-message,
+.error-message,
+.info-message,
+.loading,
+.empty-state {
+  margin: 16px 0;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.sucess-message {
+  background: #fff3c4;
+  color: #7a4b00;
+  border-left: 5px solid #fcbf49;
+}
+
+.error-message {
+  background: #ffe1e1;
+  color: #9d0208;
+  border-left: 5px solid #d62828;
+}
+
+.info-message,
+.loading,
+.empty-state {
+  background: #fff1df;
+  color: #7a5a4a;
+}
+
+.loading p,
+.empty-state p {
+  margin: 0;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.trilho:focus-visible {
+  outline: 3px solid #f77f00;
+  outline-offset: 2px;
 }

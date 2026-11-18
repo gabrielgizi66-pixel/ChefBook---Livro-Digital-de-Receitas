@@ -1,18 +1,17 @@
 <div class="home">
   <section class="hero">
-    <div class="hero-conteudo">
-      <span class="etiqueta">Conteúdo digital sem complicação</span>
-      <h1>Suas ideias merecem <em>ganhar o mundo.</em></h1>
-      <p>O Raxadinha reúne criação, organização e venda de conteúdos digitais em um só lugar — simples para quem publica
-        e agradável para quem compra.</p>
+    <div class="hero-receita">
+      <span class="etiqueta">Seu livro de receitas digital</span>
+      <h1>Receitas que merecem <em>ir para a mesa.</em></h1>
+      <p>O ChefBook reúne suas receitas favoritas em um só lugar — ingredientes, modo de preparo, tempo e porções sempre à mão na hora de cozinhar.</p>
       <div class="acoes">
-        <a class="botao botao-primario" routerLink="/receitas">Explorar conteúdos</a>
+        <a class="botao botao-primario" routerLink="/receitas">Explorar receitas</a>
         <a class="botao botao-secundario" routerLink="/sobre">Conhecer o projeto</a>
       </div>
-      <div class="indicadores" aria-label="Destaques da plataforma">
+      <div class="indicadores" aria-label="Destaques do livro de receitas">
         <div><strong>100%</strong><span>digital</span></div>
-        <div><strong>24/7</strong><span>disponível</span></div>
-        <div><strong>∞</strong><span>ideias possíveis</span></div>
+        <div><strong>24/7</strong><span>na sua cozinha</span></div>
+        <div><strong>∞</strong><span>sabores possíveis</span></div>
       </div>
     </div>
 
@@ -20,16 +19,16 @@
       <div class="circulo circulo-um"></div>
       <div class="circulo circulo-dois"></div>
       <div class="cartao cartao-principal">
-        <span class="icone">✦</span>
-        <small>Conteúdo em destaque</small>
-        <strong>Transforme conhecimento em oportunidade.</strong>
+        <span class="icone">🍳</span>
+        <small>Receita em destaque</small>
+        <strong>Do ingrediente ao prato pronto.</strong>
         <div class="linha"><span></span><span></span></div>
       </div>
-      <div class="cartao cartao-flutuante cartao-vendas"><span>↗</span>
-        <div><strong>Vendas</strong><small>crescendo por aqui</small></div>
+      <div class="cartao cartao-flutuante cartao-vendas"><span>⏱</span>
+        <div><strong>Rápidas</strong><small>prontas em minutos</small></div>
       </div>
       <div class="cartao cartao-flutuante cartao-criadores"><span>♥</span>
-        <div><strong>Criadores</strong><small>ideias que conectam</small></div>
+        <div><strong>Caseiras</strong><small>sabor de comida feita em casa</small></div>
       </div>
     </div>
   </section>
@@ -37,61 +36,63 @@
   <section class="vitrine" aria-labelledby="titulo-vitrine">
     <div class="vitrine-cabecalho">
       <div>
-        <span class="etiqueta">Escolhidos para você</span>
-        <h2 id="titulo-vitrine">Conteúdos em destaque</h2>
-        <p>Uma amostra do que está esperando para ser descoberto.</p>
+        <span class="etiqueta">Escolhidas para você</span>
+        <h2 id="titulo-vitrine">Receitas em destaque</h2>
+        <p>Uma amostra do que está esperando para ir ao fogão.</p>
       </div>
       <div class="controles" aria-label="Controles do carrossel">
-        <button type="button" aria-label="Ver conteúdos anteriores" (click)="moverCarrossel(trilho, -1)">←</button>
-        <button type="button" aria-label="Ver próximos conteúdos" (click)="moverCarrossel(trilho, 1)">→</button>
+        <button type="button" aria-label="Ver receitas anteriores" (click)="moverCarrossel(trilho, -1)">←</button>
+        <button type="button" aria-label="Ver próximas receitas" (click)="moverCarrossel(trilho, 1)">→</button>
       </div>
     </div>
 
-    <div class="trilho" #trilho tabindex="0" aria-label="Carrossel de conteúdos em destaque">
-      @for (conteudo of receitasDestaque$ | async; track conteudo.id) {
-      <article class="card-conteudo">
-        <div class="capa" [class]="'capa ' + conteudo.cor">
-          <span>{{ conteudo.icone }}</span>
-          <small>Raxadinha</small>
+    <div class="trilho" #trilho tabindex="0" aria-label="Carrossel de receitas em destaque">
+      @for (receita of receitasDestaque$ | async; track receita.id) {
+      <article class="card-receita">
+        <div class="capa" [class]="'capa ' + receita.cor">
+          <span>{{ receita.icone }}</span>
+          <small>{{ receita.tempoPreparoMinutos }} min</small>
         </div>
         <div class="card-corpo">
-          <span class="categoria">{{ conteudo.categoria }}</span>
-          <h3>{{ conteudo.titulo }}</h3>
-          <a [routerLink]="['/receitas', conteudo.id]" [attr.aria-label]="'Conhecer ' + conteudo.titulo">Conhecer
+          <span class="categoria">{{ receita.categoria }}</span>
+          <h3>{{ receita.nome }}</h3>
+          <a [routerLink]="['/receitas', receita.id]" [attr.aria-label]="'Ver receita ' + receita.nome">Ver receita
             <span>→</span></a>
         </div>
       </article>
+      } @empty {
+      <p class="dica-vazia">Nenhuma receita publicada ainda.</p>
       }
     </div>
-    <p class="dica-arraste">Arraste para o lado para ver mais conteúdos</p>
+    <p class="dica-arraste">Arraste para o lado para ver mais receitas</p>
   </section>
 
   <section class="recursos" aria-labelledby="titulo-recursos">
     <div class="cabecalho-secao">
-      <span class="etiqueta">Do começo ao clique</span>
-      <h2 id="titulo-recursos">Tudo o que seu conteúdo precisa</h2>
-      <p>Uma experiência pensada para deixar o trabalho organizado e o caminho do público mais curto.</p>
+      <span class="etiqueta">Da despensa ao prato</span>
+      <h2 id="titulo-recursos">Tudo o que sua receita precisa</h2>
+      <p>Um caderno de receitas organizado, para você gastar menos tempo procurando e mais tempo cozinhando.</p>
     </div>
     <div class="grade-recursos">
       <article><span class="numero">01</span>
         <h3>Organize</h3>
-        <p>Mantenha seus conteúdos reunidos, bem apresentados e fáceis de encontrar.</p>
+        <p>Guarde suas receitas por categoria, com ingredientes e modo de preparo bem separados.</p>
       </article>
       <article class="destaque"><span class="numero">02</span>
-        <h3>Compartilhe</h3>
-        <p>Apresente suas ideias com clareza e alcance as pessoas certas.</p>
+        <h3>Cozinhe</h3>
+        <p>Veja tempo de preparo e porções de cada prato antes mesmo de acender o fogão.</p>
       </article>
       <article><span class="numero">03</span>
-        <h3>Cresça</h3>
-        <p>Acompanhe sua jornada e transforme conhecimento em novas possibilidades.</p>
+        <h3>Compartilhe</h3>
+        <p>Publique suas receitas e deixe que outras pessoas também provem do seu tempero.</p>
       </article>
     </div>
   </section>
 
   <section class="chamada-final">
-    <div><span class="etiqueta">Pronto para começar?</span>
-      <h2>Tem sempre alguma coisa boa esperando para ser descoberta.</h2>
+    <div><span class="etiqueta">Bateu a fome?</span>
+      <h2>Sempre tem uma receita boa esperando para ser feita.</h2>
     </div>
-    <a class="botao botao-claro" routerLink="/receitas">Ver conteúdos <span>→</span></a>
+    <a class="botao botao-claro" routerLink="/receitas">Ver receitas <span>→</span></a>
   </section>
 </div>

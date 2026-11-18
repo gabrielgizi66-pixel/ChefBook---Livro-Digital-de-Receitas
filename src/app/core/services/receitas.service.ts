@@ -1,10 +1,39 @@
 import { Injectable, inject } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { Receita } from "../models/receita.model";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
-type FirebaseReceita = Omit<Receita, "id"> & {id?: unknown};
+type FirebaseReceita = Partial<Omit<Receita, "id" | "ingredientes" | "modoPreparo">> & {
+  id?: unknown;
+  ingredientes?: string[] | string;
+  modoPreparo?: string[] | string;
+};
+
+function paraLista(valor: string[] | string | undefined, separador: RegExp): string[] {
+  if (Array.isArray(valor)) {
+    return valor.map((item) => String(item).trim()).filter((item) => item.length > 0);
+  }
+  if (typeof valor === "string") {
+    return valor.split(separador).map((item) => item.trim()).filter((item) => item.length > 0);
+  }
+  return [];
+}
+
+function normalizar(id: string, receita: FirebaseReceita): Receita {
+  return {
+    id,
+    nome: String(receita.nome ?? ""),
+    categoria: String(receita.categoria ?? ""),
+    ingredientes: paraLista(receita.ingredientes, /[,\n]/),
+    modoPreparo: paraLista(receita.modoPreparo, /\n/),
+    tempoPreparoMinutos: Number(receita.tempoPreparoMinutos ?? 0),
+    porcoes: Number(receita.porcoes ?? 0),
+    publicada: String(receita.publicada) === "true",
+    icone: receita.icone || "🍲",
+    cor: receita.cor || "laranja",
+  };
+}
 
 @Injectable({ providedIn: "root" })
 
@@ -22,10 +51,7 @@ getAll(): Observable<Receita[]> {
       if (!response) {
         return [];
       }
-      return Object.entries(response).map(([id, receita]) => {
-        const { id: _ignoredId, ...receitaData} = receita;
-        return { id, ...receitaData } as Receita;
-      });
+      return Object.entries(response).map(([id, receita]) => normalizar(id, receita));
     }),
     );
   }
@@ -38,11 +64,10 @@ getAll(): Observable<Receita[]> {
         if (!response) {
           throw new Error("Receita não encontrada!");
         }
-        const { id: _ignoredId, ...receitaData } = response;
-        return { id, ...receitaData };
+        return normalizar(id, response);
       }),
     );
-  }  
+  }
 
  create(receita:Omit<Receita, "id">): Observable<Receita> {
     return this.http.post< { name: string } >
@@ -59,7 +84,7 @@ getAll(): Observable<Receita[]> {
     return this.http.put<Omit<Receita, "id">>
     (`${this.apiUrl}/${id}${this.sufix}`, receita)
     .pipe(
-      map((response) => ({
+      map(() => ({
         id,
         ...receita,
       }))

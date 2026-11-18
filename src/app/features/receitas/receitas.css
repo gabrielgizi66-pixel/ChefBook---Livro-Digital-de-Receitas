@@ -1,1 +1,106 @@
-/* Espaço reservado para os estilos desta página. */
+:host {
+    display: block;
+}
+
+.receitas {
+    width: min(100%, 1240px);
+    margin: 0 auto;
+}
+
+.topo {
+    margin-bottom: 28px;
+    padding: clamp(32px, 5vw, 56px);
+    border-radius: 24px;
+    background: linear-gradient(135deg, #fff1df, #ffe0bd);
+}
+
+.etiqueta,
+.categoria {
+    color: #e85d04;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.topo h1 {
+    margin: 12px 0 10px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    letter-spacing: -.04em;
+}
+
+.topo p {
+    margin: 0 0 22px;
+    color: #7a5a4a;
+}
+
+.busca {
+    width: min(100%, 460px);
+    padding: 14px 18px;
+    border: 2px solid #f3d9c4;
+    border-radius: 12px;
+    background: #fff;
+    font: inherit;
+}
+
+.busca:focus {
+    border-color: #f77f00;
+    outline: none;
+}
+
+.grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card-receita {
+    overflow: hidden;
+    border: 1px solid #f3d9c4;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 12px 32px rgb(120 40 10 / 8%);
+    transition: transform .25s, box-shadow .25s;
+}
+
+.card-receita:hover {
+    box-shadow: 0 18px 40px rgb(120 40 10 / 16%);
+    transform: translateY(-6px);
+}
+
+.capa {
+    display: grid;
+    min-height: 170px;
+    place-items: center;
+}
+
+.capa > span {
+    font-size: 3.4rem;
+}
+
+.card-corpo {
+    padding: 22px;
+}
+
+.card-corpo h3 {
+    margin: 10px 0 8px;
+    font-size: 1.25rem;
+}
+
+.info {
+    margin: 0 0 18px;
+    color: #7a5a4a;
+    font-size: .9rem;
+}
+
+.card-corpo a {
+    display: flex;
+    color: #d62828;
+    font-weight: 800;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+.card-corpo a:hover {
+    color: #e85d04;
+}

@@ -1,6 +1,14 @@
-# ChefBook — Estrutura inicial Angular 21+
+# ChefBook — Livro Digital de Receitas
 
-Projeto didático com páginas e componentes, **sem API, autenticação, banco de dados, formulários ou CRUD**.
+Livro de receitas digital desenvolvido em Angular 21+, com listagem, detalhamento e área administrativa para cadastrar, editar e excluir receitas (dados armazenados no Firebase Realtime Database).
+
+## Funcionalidades
+
+- **Home**: apresentação do projeto e carrossel com receitas em destaque.
+- **Receitas**: listagem das receitas publicadas com busca por nome ou categoria.
+- **Detalhe da receita**: ingredientes, modo de preparo, tempo e porções.
+- **Admin**: listagem de todas as receitas, com inclusão, edição e exclusão via formulário (ReactiveForms).
+- **Sobre**: história e proposta do ChefBook.
 
 ## Executar
 

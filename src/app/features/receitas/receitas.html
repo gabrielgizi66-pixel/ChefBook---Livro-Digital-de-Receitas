@@ -1,3 +1,39 @@
-<h1>Conteúdos disponíveis</h1>
-<p>Aqui será implementada a listagem pública dos conteúdos cadastrados.</p>
-<p>Por enquanto, esta página apresenta somente a estrutura inicial.</p>
+<section class="receitas">
+  <header class="topo">
+    <span class="etiqueta">Livro de receitas</span>
+    <h1>Todas as receitas</h1>
+    <p>Escolha um prato, confira os ingredientes e mãos à obra.</p>
+    <input class="busca" type="search" placeholder="Buscar por nome ou categoria..." [value]="busca()"
+      (input)="busca.set($any($event.target).value)" aria-label="Buscar receitas" />
+  </header>
+
+  @if (errorMessage()) {
+  <div class="error-message">{{ errorMessage() }}</div>
+  }
+
+  @if (loading()) {
+  <div class="loading">
+    <p>Carregando receitas...</p>
+  </div>
+  } @else if (receitasFiltradas().length === 0) {
+  <div class="empty-state">
+    <p>Nenhuma receita encontrada.</p>
+  </div>
+  }
+
+  <div class="grade">
+    @for (receita of receitasFiltradas(); track receita.id) {
+    <article class="card-receita">
+      <div class="capa" [class]="'capa ' + receita.cor">
+        <span>{{ receita.icone }}</span>
+      </div>
+      <div class="card-corpo">
+        <span class="categoria">{{ receita.categoria }}</span>
+        <h3>{{ receita.nome }}</h3>
+        <p class="info">⏱ {{ receita.tempoPreparoMinutos }} min · 🍽 {{ receita.porcoes }} porções</p>
+        <a [routerLink]="['/receitas', receita.id]">Ver receita <span>→</span></a>
+      </div>
+    </article>
+    }
+  </div>
+</section>

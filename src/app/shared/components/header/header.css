@@ -1,10 +1,10 @@
 /* CSS do cabeçalho: pode ser alterado pelos alunos */
 .cabecalho {
-    background: #1d2440;
+    background: linear-gradient(90deg, #c1121f, #e85d04);
     color: #fff;
 }
 
-.cabecalho-conteudo {
+.cabecalho-receita {
     width: 100%;
     padding: 18px 24px;
     display: flex;
@@ -28,7 +28,7 @@ nav {
 }
 
 nav a {
-    color: #e7eaf5;
+    color: #ffe8d1;
     text-decoration: none;
     padding: 9px 12px;
     border-radius: 6px;
@@ -36,24 +36,24 @@ nav a {
 
 nav a:hover,
 nav a.ativo {
-    background: #35416b;
+    background: rgb(255 255 255 / 18%);
     color: #fff;
 }
 
 nav .botao-admin {
-    background: #e5b85b;
-    color: #172039;
+    background: #fcbf49;
+    color: #3b1d10;
     font-weight: 700;
 }
 
 nav .botao-admin:hover,
 nav .botao-admin.ativo {
-    background: #f3cf83;
-    color: #172039;
+    background: #ffd166;
+    color: #3b1d10;
 }
 
 @media (max-width: 600px) {
-    .cabecalho-conteudo {
+    .cabecalho-receita {
         flex-direction: column;
         align-items: flex-start;
     }

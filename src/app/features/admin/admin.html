@@ -1,45 +1,49 @@
 <section class="list-box">
-<div class="top-bar">
-<h2>Receitas Cadastradas</h2>
-<a routerLink="/admin/form" class="btn">Novo</a>
-</div>
-@if(sucessMessage){
-  <div class="sucess-message">
-    {{sucessMessage}}
+  <div class="top-bar">
+    <h2>Receitas Cadastradas</h2>
+    <a routerLink="/admin/form" class="btn">+ Nova receita</a>
   </div>
-}
-@if(errorMessage){
-  <div class="error-message">
-    {{errorMessage}}
-  </div>
-}
 
-@if (loading()) {
-  <div class="loading">
-    <p>Carregando...</p>
-  </div>
-}
-@if (!loading() && receitas().length === 0) {
-  <div class="empty-state">
-    <p>Nenhuma receita cadastrada.</p>
-  </div>
-}
+  @if (sucessMessage()) {
+    <div class="sucess-message">{{ sucessMessage() }}</div>
+  }
+  @if (errorMessage()) {
+    <div class="error-message">{{ errorMessage() }}</div>
+  }
 
-<div class="conteudo-grid">
+  @if (loading()) {
+    <div class="loading">
+      <p>Carregando...</p>
+    </div>
+  }
+  @if (!loading() && receitas().length === 0) {
+    <div class="empty-state">
+      <p>Nenhuma receita cadastrada.</p>
+    </div>
+  }
+
+  <div class="receita-grid">
     @for (receita of receitas(); track receita.id) {
-        <div class="receita-item">
-            <h3>{{receita.nome}}</h3>
-            <p>{{receita.categoria}}</p>
-            <p>{{receita.ingredientes}}</p>
-            <p>{{receita.modoPreparo}}</p>
-            <p>{{receita.tempoPreparoMinutos}}</p>
-            <p>{{receita.porcoes}}</p>
-            <p>{{receita.publicada}}</p>
-            <div class="actions">
-                <button type="button" class="btn-edit" (click)="edit(receita.id)">Editar</button>
-                <button type="button" class="btn-delete" (click)="delete(receita.id)">Excluir</button>
-            </div>
+      <div class="receita-item">
+        <div class="capa" [class]="'capa ' + receita.cor"><span>{{ receita.icone }}</span></div>
+        <div class="conteudo">
+          <div class="titulo">
+            <h3>{{ receita.nome }}</h3>
+            <span class="status" [class.publicada]="receita.publicada">
+              {{ receita.publicada ? 'Publicada' : 'Rascunho' }}
+            </span>
+          </div>
+          <p class="categoria">{{ receita.categoria }}</p>
+          <p class="info">
+            ⏱ {{ receita.tempoPreparoMinutos }} min · 🍽 {{ receita.porcoes }} porções ·
+            {{ receita.ingredientes.length }} ingredientes · {{ receita.modoPreparo.length }} passos
+          </p>
+          <div class="actions">
+            <button type="button" class="btn-edit" (click)="edit(receita.id)">Editar</button>
+            <button type="button" class="btn-delete" (click)="delete(receita.id)">Excluir</button>
+          </div>
         </div>
+      </div>
     }
-</div>
+  </div>
 </section>

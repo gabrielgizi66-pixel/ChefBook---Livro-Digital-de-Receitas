@@ -1,4 +1,5 @@
 <div class="form-box">
+  <a class="voltar" routerLink="/admin">← Voltar para a lista</a>
   <h2>
     @if (editingId !== null) {
       Editar Receita
@@ -21,16 +22,94 @@
 
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="field">
-      <label for="receita">Receita:</label>
-      <input id="receita" type="text" formControlName="receita" />
-      <span class="character-count">
-        {{ form.controls.receita.value.length }} caracteres
-      </span>
-
-      @if (form.controls.receita.touched && form.controls.receita.invalid) {
-        <small>Informe uma categoria com mínimo três caracteres.</small>
+      <label for="nome">Nome da receita</label>
+      <input id="nome" type="text" formControlName="nome" placeholder="Ex.: Bolo de cenoura com chocolate" />
+      <span class="character-count">{{ form.controls.nome.value.length }} caracteres</span>
+      @if (form.controls.nome.touched && form.controls.nome.invalid) {
+        <small>Informe um nome com no mínimo três caracteres.</small>
       }
     </div>
+
+    <div class="linha">
+      <div class="field">
+        <label for="categoria">Categoria</label>
+        <select id="categoria" formControlName="categoria">
+          <option value="" disabled>Selecione...</option>
+          @for (categoria of categorias; track categoria) {
+            <option [value]="categoria">{{ categoria }}</option>
+          }
+        </select>
+        @if (form.controls.categoria.touched && form.controls.categoria.invalid) {
+          <small>Escolha uma categoria.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="tempo">Tempo de preparo (min)</label>
+        <input id="tempo" type="number" min="1" formControlName="tempoPreparoMinutos" />
+        @if (form.controls.tempoPreparoMinutos.touched && form.controls.tempoPreparoMinutos.invalid) {
+          <small>Informe o tempo em minutos.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="porcoes">Porções</label>
+        <input id="porcoes" type="number" min="1" formControlName="porcoes" />
+        @if (form.controls.porcoes.touched && form.controls.porcoes.invalid) {
+          <small>Informe ao menos uma porção.</small>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="ingredientes">Ingredientes (um por linha)</label>
+      <textarea id="ingredientes" rows="6" formControlName="ingredientes"
+        placeholder="3 cenouras médias&#10;4 ovos&#10;2 xícaras de açúcar"></textarea>
+      @if (form.controls.ingredientes.touched && form.controls.ingredientes.invalid) {
+        <small>Informe os ingredientes.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="modoPreparo">Modo de preparo (um passo por linha)</label>
+      <textarea id="modoPreparo" rows="6" formControlName="modoPreparo"
+        placeholder="Bata as cenouras com os ovos no liquidificador&#10;Misture o açúcar e a farinha&#10;Asse por 40 minutos"></textarea>
+      @if (form.controls.modoPreparo.touched && form.controls.modoPreparo.invalid) {
+        <small>Informe o modo de preparo.</small>
+      }
+    </div>
+
+    <div class="linha">
+      <div class="field">
+        <label for="icone">Ícone</label>
+        <select id="icone" formControlName="icone">
+          @for (icone of icones; track icone) {
+            <option [value]="icone">{{ icone }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="cor">Cor da capa</label>
+        <select id="cor" formControlName="cor">
+          @for (cor of cores; track cor.valor) {
+            <option [value]="cor.valor">{{ cor.nome }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="rotulo-previa">Prévia</span>
+        <div class="capa previa" [class]="'capa previa ' + form.controls.cor.value">
+          <span>{{ form.controls.icone.value }}</span>
+        </div>
+      </div>
+    </div>
+
+    <label class="check">
+      <input type="checkbox" formControlName="publicada" />
+      Publicar receita no livro
+    </label>
 
     <button type="submit" [disabled]="loading || loadingData">
       @if (loading) {

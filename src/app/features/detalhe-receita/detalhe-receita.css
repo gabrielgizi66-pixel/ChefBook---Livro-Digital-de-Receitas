@@ -5,13 +5,13 @@
 .detalhe {
     width: min(100%, 1240px);
     margin: 0 auto;
-    color: #1d2440;
+    color: #3b1d10;
 }
 
 .voltar {
     display: inline-flex;
     margin: 4px 0 28px;
-    color: #626a81;
+    color: #7a5a4a;
     align-items: center;
     gap: 9px;
     font-weight: 700;
@@ -19,16 +19,16 @@
 }
 
 .voltar:hover {
-    color: #b17c18;
+    color: #d62828;
 }
 
 .apresentacao {
     display: grid;
     grid-template-columns: minmax(330px, .8fr) minmax(0, 1.2fr);
     overflow: hidden;
-    border: 1px solid #e0e3ec;
+    border: 1px solid #f3d9c4;
     border-radius: 28px;
-    background: #f8f8fb;
+    background: #fff6ec;
 }
 
 .capa {
@@ -73,26 +73,6 @@
     text-transform: uppercase;
 }
 
-.capa.azul {
-    background: linear-gradient(135deg, #253058, #6676b3);
-}
-
-.capa.dourado {
-    background: linear-gradient(135deg, #9b6814, #e5b85b);
-}
-
-.capa.verde {
-    background: linear-gradient(135deg, #27624f, #6eaf8d);
-}
-
-.capa.lilas {
-    background: linear-gradient(135deg, #583f75, #a781c5);
-}
-
-.capa.coral {
-    background: linear-gradient(135deg, #91483e, #df8b78);
-}
-
 .informacoes {
     display: flex;
     padding: clamp(40px, 7vw, 84px);
@@ -102,7 +82,7 @@
 
 .categoria,
 .rotulo {
-    color: #b17c18;
+    color: #e85d04;
     font-size: .78rem;
     font-weight: 800;
     letter-spacing: .12em;
@@ -118,7 +98,7 @@
 
 .introducao {
     margin: 0;
-    color: #626a81;
+    color: #7a5a4a;
     font-size: 1.12rem;
     line-height: 1.75;
 }
@@ -127,7 +107,7 @@
     display: grid;
     margin: 36px 0;
     padding: 24px 0;
-    border-block: 1px solid #dfe2eb;
+    border-block: 1px solid #f3d9c4;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
 }
@@ -139,7 +119,7 @@
 }
 
 .metadados span {
-    color: #81879a;
+    color: #7a5a4a;
     font-size: .78rem;
 }
 
@@ -150,40 +130,18 @@
     padding: 0 22px;
     border: 0;
     border-radius: 10px;
-    background: #1d2440;
+    background: #d62828;
     color: #fff;
     cursor: pointer;
     align-items: center;
     justify-content: space-between;
     font: inherit;
     font-weight: 800;
+    text-decoration: none;
 }
 
 .botao-principal:hover {
-    background: #35416b;
-}
-
-.observacao {
-    margin: 12px 0 0;
-    color: #8a90a2;
-    font-size: .78rem;
-    text-align: center;
-}
-
-.preco {
-    display: flex;
-    margin: 0 0 22px;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.preco span {
-    color: #81879a;
-    font-size: .78rem;
-}
-
-.preco strong {
-    font-size: 2rem;
+    background: #a4161a;
 }
 
 .descricao {
@@ -200,17 +158,11 @@
     letter-spacing: -.035em;
 }
 
-.texto p {
-    color: #616980;
-    font-size: 1.05rem;
-    line-height: 1.85;
-}
-
 aside {
     align-self: start;
     padding: 30px;
     border-radius: 18px;
-    background: #f7f4ec;
+    background: #fff1df;
 }
 
 aside h3 {
@@ -228,13 +180,13 @@ aside ul {
 
 aside li {
     display: flex;
-    color: #555e76;
+    color: #7a5a4a;
     align-items: center;
     gap: 10px;
 }
 
 aside li span {
-    color: #b17c18;
+    color: #e85d04;
     font-weight: 900;
 }
 
@@ -246,7 +198,7 @@ aside li span {
 }
 
 .nao-encontrado>span {
-    color: #e5b85b;
+    color: #fcbf49;
     font-size: 5rem;
     font-weight: 900;
 }
@@ -257,17 +209,60 @@ aside li span {
 }
 
 .nao-encontrado p {
-    color: #697188;
+    color: #7a5a4a;
 }
 
 .nao-encontrado a {
     display: inline-block;
+    justify-self: center;
     margin-top: 20px;
     padding: 14px 20px;
     border-radius: 9px;
-    background: #1d2440;
+    background: #d62828;
     color: #fff;
     text-decoration: none;
+}
+
+.passos {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    counter-reset: passo;
+    list-style: none;
+    gap: 18px;
+}
+
+.passos li {
+    position: relative;
+    padding-left: 56px;
+    color: #7a5a4a;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    counter-increment: passo;
+}
+
+.passos li::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #f77f00;
+    color: #fff;
+    content: counter(passo);
+    font-weight: 800;
+    place-items: center;
+}
+
+.loading {
+    width: min(100%, 1240px);
+    margin: 0 auto;
+}
+
+.nao-encontrado a:hover {
+    background: #a4161a;
 }
 
 @media (max-width: 820px) {

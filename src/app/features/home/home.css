@@ -5,7 +5,7 @@
 .home {
     width: min(100%, 1400px);
     margin: 0 auto;
-    color: #1d2440;
+    color: #3b1d10;
 }
 
 .hero {
@@ -14,10 +14,10 @@
     min-height: 680px;
     overflow: hidden;
     border-radius: 28px;
-    background: linear-gradient(135deg, #f7f4ec 0%, #edf0f8 100%);
+    background: linear-gradient(135deg, #fff1df 0%, #ffe0bd 100%);
 }
 
-.hero-conteudo {
+.hero-receita {
     display: flex;
     padding: clamp(48px, 7vw, 96px);
     flex-direction: column;
@@ -25,7 +25,7 @@
 }
 
 .etiqueta {
-    color: #b17c18;
+    color: #e85d04;
     font-size: .78rem;
     font-weight: 800;
     letter-spacing: .13em;
@@ -41,15 +41,15 @@
 }
 
 .hero h1 em {
-    color: #b17c18;
+    color: #e85d04;
     font-family: Georgia, 'Times New Roman', serif;
     font-weight: 400;
 }
 
-.hero-conteudo>p {
+.hero-receita>p {
     max-width: 650px;
     margin: 0;
-    color: #5d647b;
+    color: #7a5a4a;
     font-size: 1.15rem;
     line-height: 1.75;
 }
@@ -78,17 +78,17 @@
 }
 
 .botao-primario {
-    background: #1d2440;
+    background: #d62828;
     color: #fff;
 }
 
 .botao-primario:hover {
-    background: #35416b;
+    background: #a4161a;
 }
 
 .botao-secundario {
-    border: 1px solid #c9cedd;
-    color: #1d2440;
+    border: 1px solid #e9bfa0;
+    color: #3b1d10;
 }
 
 .botao-secundario:hover {
@@ -112,7 +112,7 @@
 
 .indicadores span {
     margin-top: 3px;
-    color: #747b91;
+    color: #7a5a4a;
     font-size: .82rem;
 }
 
@@ -120,7 +120,7 @@
     position: relative;
     min-height: 500px;
     overflow: hidden;
-    background: linear-gradient(145deg, #1d2440, #35416b);
+    background: linear-gradient(145deg, #c1121f, #f77f00);
 }
 
 .circulo {
@@ -134,7 +134,7 @@
     right: -18%;
     width: 430px;
     height: 430px;
-    background: rgb(229 184 91 / 35%);
+    background: rgb(252 191 73 / 45%);
 }
 
 .circulo-dois {
@@ -142,14 +142,14 @@
     left: -15%;
     width: 360px;
     height: 360px;
-    background: rgb(113 131 190 / 30%);
+    background: rgb(247 127 0 / 40%);
 }
 
 .cartao {
     position: absolute;
     border: 1px solid rgb(255 255 255 / 25%);
     background: rgb(255 255 255 / 93%);
-    box-shadow: 0 24px 60px rgb(10 16 41 / 28%);
+    box-shadow: 0 24px 60px rgb(80 20 0 / 28%);
 }
 
 .cartao-principal {
@@ -169,14 +169,14 @@
     width: 54px;
     height: 54px;
     border-radius: 14px;
-    background: #e5b85b;
+    background: #fcbf49;
     place-items: center;
     font-size: 1.6rem;
 }
 
 .cartao-principal small {
     margin-top: auto;
-    color: #7c8398;
+    color: #7a5a4a;
     text-transform: uppercase;
     letter-spacing: .08em;
 }
@@ -196,12 +196,12 @@
     width: 65%;
     height: 8px;
     border-radius: 8px;
-    background: #1d2440;
+    background: #3b1d10;
 }
 
 .linha span:last-child {
     width: 25%;
-    background: #e5b85b;
+    background: #fcbf49;
 }
 
 .cartao-flutuante {
@@ -218,9 +218,9 @@
     width: 36px;
     height: 36px;
     border-radius: 9px;
-    background: #eef0f7;
+    background: #fff6ec;
     place-items: center;
-    color: #b17c18;
+    color: #e85d04;
     font-weight: 900;
 }
 
@@ -231,7 +231,7 @@
 
 .cartao-flutuante small {
     margin-top: 3px;
-    color: #747b91;
+    color: #7a5a4a;
 }
 
 .cartao-vendas {
@@ -265,7 +265,7 @@
 
 .vitrine-cabecalho p {
     margin: 0;
-    color: #6a7188;
+    color: #7a5a4a;
     font-size: 1.05rem;
 }
 
@@ -277,17 +277,17 @@
 .controles button {
     width: 48px;
     height: 48px;
-    border: 1px solid #d8dce7;
+    border: 1px solid #f3d9c4;
     border-radius: 50%;
     background: #fff;
-    color: #1d2440;
+    color: #3b1d10;
     cursor: pointer;
     font-size: 1.3rem;
     transition: background .2s, color .2s, transform .2s;
 }
 
 .controles button:hover {
-    background: #1d2440;
+    background: #d62828;
     color: #fff;
     transform: translateY(-2px);
 }
@@ -301,22 +301,22 @@
     scroll-padding-inline: clamp(0px, 4vw, 56px);
     scroll-snap-type: x mandatory;
     scrollbar-width: thin;
-    scrollbar-color: #c3c8d8 transparent;
+    scrollbar-color: #e9bfa0 transparent;
 }
 
-.card-conteudo {
+.card-receita {
     min-width: min(310px, 82vw);
     overflow: hidden;
-    border: 1px solid #e0e3ec;
+    border: 1px solid #f3d9c4;
     border-radius: 20px;
     background: #fff;
-    box-shadow: 0 12px 32px rgb(29 36 64 / 8%);
+    box-shadow: 0 12px 32px rgb(120 40 10 / 8%);
     scroll-snap-align: start;
     transition: transform .25s, box-shadow .25s;
 }
 
-.card-conteudo:hover {
-    box-shadow: 0 18px 40px rgb(29 36 64 / 14%);
+.card-receita:hover {
+    box-shadow: 0 18px 40px rgb(120 40 10 / 14%);
     transform: translateY(-6px);
 }
 
@@ -363,32 +363,12 @@
     text-transform: uppercase;
 }
 
-.capa.azul {
-    background: linear-gradient(135deg, #253058, #6676b3);
-}
-
-.capa.dourado {
-    background: linear-gradient(135deg, #9b6814, #e5b85b);
-}
-
-.capa.verde {
-    background: linear-gradient(135deg, #27624f, #6eaf8d);
-}
-
-.capa.lilas {
-    background: linear-gradient(135deg, #583f75, #a781c5);
-}
-
-.capa.coral {
-    background: linear-gradient(135deg, #91483e, #df8b78);
-}
-
 .card-corpo {
     padding: 24px;
 }
 
 .categoria {
-    color: #b17c18;
+    color: #e85d04;
     font-size: .72rem;
     font-weight: 800;
     letter-spacing: .1em;
@@ -404,20 +384,20 @@
 
 .card-corpo a {
     display: flex;
-    color: #1d2440;
+    color: #3b1d10;
     font-weight: 800;
     justify-content: space-between;
     text-decoration: none;
 }
 
 .card-corpo a:hover {
-    color: #b17c18;
+    color: #e85d04;
 }
 
 .dica-arraste {
     display: none;
     margin: 4px 0 0;
-    color: #7c8398;
+    color: #7a5a4a;
     font-size: .8rem;
     text-align: center;
 }
@@ -441,7 +421,7 @@
 }
 
 .cabecalho-secao p {
-    color: #6a7188;
+    color: #7a5a4a;
     font-size: 1.05rem;
     line-height: 1.7;
 }
@@ -455,18 +435,18 @@
 .grade-recursos article {
     min-height: 280px;
     padding: 34px;
-    border: 1px solid #e0e3ec;
+    border: 1px solid #f3d9c4;
     border-radius: 20px;
     background: #fff;
 }
 
 .grade-recursos article.destaque {
-    background: #f7f4ec;
+    background: #fff1df;
     transform: translateY(-12px);
 }
 
 .numero {
-    color: #b17c18;
+    color: #e85d04;
     font-size: .82rem;
     font-weight: 800;
     letter-spacing: .1em;
@@ -479,7 +459,7 @@
 
 .grade-recursos p {
     margin: 0;
-    color: #6a7188;
+    color: #7a5a4a;
     line-height: 1.7;
 }
 
@@ -488,7 +468,7 @@
     margin-bottom: 8px;
     padding: clamp(38px, 6vw, 72px);
     border-radius: 26px;
-    background: #1d2440;
+    background: linear-gradient(120deg, #9d0208, #e85d04);
     color: #fff;
     align-items: center;
     justify-content: space-between;
@@ -500,7 +480,7 @@
 }
 
 .chamada-final .etiqueta {
-    color: #e5b85b;
+    color: #fcbf49;
 }
 
 .chamada-final h2 {
@@ -509,13 +489,18 @@
 
 .botao-claro {
     flex: 0 0 auto;
-    background: #e5b85b;
-    color: #172039;
+    background: #fcbf49;
+    color: #3b1d10;
     gap: 14px;
 }
 
 .botao-claro:hover {
-    background: #f3cf83;
+    background: #ffd166;
+}
+
+.dica-vazia {
+    margin: 0;
+    color: #7a5a4a;
 }
 
 @media (max-width: 900px) {
@@ -542,7 +527,7 @@
 }
 
 @media (max-width: 560px) {
-    .hero-conteudo {
+    .hero-receita {
         padding: 42px 24px;
     }
 

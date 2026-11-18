@@ -1,5 +1,10 @@
-.conteudo-principal {
+.receita-principal {
   width: 100%;
   flex: 1 0 auto;
   padding: 24px;
+}
+@media (max-width: 560px) {
+  .receita-principal {
+    padding: 16px;
+  }
 }
